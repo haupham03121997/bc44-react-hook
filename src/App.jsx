@@ -8,41 +8,37 @@ import DemoUseCallBack from "./pages/DemoUseCallBack";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
 
+import MainLayout from "./layout/MainLayout";
+import AdminLayout from "./layout/AdminLayout";
+
+import Dashboard from "./pages/Dashboard";
+import AddUser from "./pages/AddUser";
+import AddMovie from "./pages/AddMovie";
+
+import MovieDetail from "./pages/MovieDetail";
+
 function App() {
-  // useState dùng để khởi tạo state trong component functional
-  // setState sử dụng cơ chế replace chứ không phải merge
-  // useState là hàm bất đồng bộ
-  const initialCount = 0;
-  const [count, setCount] = useState(initialCount);
-  const [like, setLike] = useState(1);
-  const [person, setPerson] = useState({ name: "Hậu", age: 26 });
-  const [listProducts, setListProducts] = useState([{}]);
-
-  const handleClickCount = () => {
-    setCount(count + 1);
-  };
-
-  // return (
-  //   <div className="container">
-  //     {/* <HomePage />
-  //     <p>Count : {count}</p>
-  //     <button className="btn btn-success" onClick={handleClickCount}>
-  //       Increase
-  //     </button> */}
-  //     {/* <DemoUseEffect /> */}
-  //     <DemoUseCallBack />
-  //   </div>
-  // );
   return (
     <>
-      <Header />
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/contact" element={<ContactPage />} />
-        <Route path="*" element={<Navigate to={"/"} />} />
+        {/* Main Layout */}
+        <Route path="/" element={<MainLayout />}>
+          <Route path="/list-movie" element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+        </Route>
+
+        {/* Admin Layout */}
+        <Route path="/admin" element={<Navigate to={"/admin/dashboard"} />} />
+
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route path="/admin/dashboard" element={<Dashboard />} />
+          <Route path="/admin/add-user" element={<AddUser />} />
+          <Route path="/admin/add-movie" element={<AddMovie />} />
+        </Route>
+
+        {/* Auth Layout */}
       </Routes>
-      <p>Footer</p>
     </>
   );
 }
