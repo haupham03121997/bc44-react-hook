@@ -3,8 +3,8 @@ import { useState } from "react";
 import HomePage from "./pages/Home";
 import AboutPage from "./pages/About";
 import ContactPage from "./pages/Contact";
-import DemoUseEffect from "./pages/DemoUseEffect";
-import DemoUseCallBack from "./pages/DemoUseCallBack";
+import DemoUseEffect from "./pages/DemoHooks/DemoUseEffect";
+import DemoUseCallBack from "./pages/DemoHooks/DemoUseCallBack";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
 
@@ -17,6 +17,9 @@ import AddMovie from "./pages/AddMovie";
 
 import MovieDetail from "./pages/MovieDetail";
 
+import SearchPage from "./pages/Search";
+import DemoUseRef from "./pages/DemoHooks/DemoUseRef";
+
 function App() {
   return (
     <>
@@ -24,8 +27,11 @@ function App() {
         {/* Main Layout */}
         <Route path="/" element={<MainLayout />}>
           <Route path="/list-movie" element={<HomePage />} />
+          <Route path="/list-movie/:id" element={<MovieDetail />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/search" element={<SearchPage />} />
+          <Route path="/demo-use-ref" element={<DemoUseRef />} />
         </Route>
 
         {/* Admin Layout */}
