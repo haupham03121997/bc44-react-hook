@@ -1,7 +1,48 @@
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import "./styles.css";
+import {
+  AppstoreOutlined,
+  MailOutlined,
+  SettingOutlined,
+} from "@ant-design/icons";
+import { Button, Menu, Space } from "antd";
 
+const items = [
+  {
+    label: <NavLink to={"/"}> Home</NavLink>,
+    key: "mail",
+    icon: <MailOutlined />,
+  },
+  {
+    label: "About",
+    key: "app",
+    icon: <AppstoreOutlined />,
+  },
+  {
+    label: <NavLink to={"/list-movie"}> List Movie</NavLink>,
+    key: "list-movie",
+    icon: <AppstoreOutlined />,
+  },
+  {
+    label: "Demo Hooks",
+    key: "SubMenu",
+    icon: <SettingOutlined />,
+    children: [
+      {
+        type: "group",
+        label: "Use Effect",
+      },
+      {
+        type: "group",
+        label: "Use State",
+      },
+      {
+        type: "group",
+        label: "Use Ref",
+      },
+    ],
+  },
+];
 export default function Header() {
   /*
    * Qui tắc của hook:
@@ -26,8 +67,14 @@ export default function Header() {
   console.log("searchValue", searchValue);
 
   return (
-    <div>
-      <div>
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+      }}
+    >
+      {/* <div>
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
           <a className="navbar-brand" href="#">
             CyberSoft
@@ -80,6 +127,9 @@ export default function Header() {
                   <NavLink className="dropdown-item" to={"/demo-use-ref"}>
                     Demo UseRef
                   </NavLink>
+                  <NavLink className="dropdown-item" to={"/demo-hook-redux"}>
+                    Demo Hook Redux
+                  </NavLink>
                 </div>
               </li>
             </ul>
@@ -100,7 +150,12 @@ export default function Header() {
             </form>
           </div>
         </nav>
-      </div>
+      </div> */}
+      <Menu items={items} mode="horizontal" />
+      <Space style={{ paddingRight: 20 }}>
+        <Button>Sign up</Button>
+        <Button type="primary">Sign in</Button>
+      </Space>
     </div>
   );
 }
