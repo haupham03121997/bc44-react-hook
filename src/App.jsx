@@ -20,6 +20,7 @@ import MovieDetail from "./pages/MovieDetail";
 import SearchPage from "./pages/Search";
 import DemoUseRef from "./pages/DemoHooks/DemoUseRef";
 import DemoHookRedux from "./pages/DemoHooks/DemoHookRedux";
+import LoginPage from "./pages/Login";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
           <Route path="/search" element={<SearchPage />} />
           <Route path="/demo-use-ref" element={<DemoUseRef />} />
           <Route path="/demo-hook-redux" element={<DemoHookRedux />} />
+          <Route path="/login" element={<LoginPage />} />
         </Route>
 
         {/* Admin Layout */}

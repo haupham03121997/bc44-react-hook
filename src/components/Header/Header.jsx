@@ -5,7 +5,8 @@ import {
   MailOutlined,
   SettingOutlined,
 } from "@ant-design/icons";
-import { Button, Menu, Space } from "antd";
+import { Avatar, Button, Menu, Space } from "antd";
+import { getLocalStorage } from "../../utils/localstorage";
 
 const items = [
   {
@@ -64,7 +65,9 @@ export default function Header() {
     const { value } = event.target;
     setSearchValue(value);
   };
-  console.log("searchValue", searchValue);
+
+  const currentUser = getLocalStorage("currentUser");
+  const accessToken = getLocalStorage("accessToken");
 
   return (
     <div
@@ -152,10 +155,19 @@ export default function Header() {
         </nav>
       </div> */}
       <Menu items={items} mode="horizontal" />
-      <Space style={{ paddingRight: 20 }}>
-        <Button>Sign up</Button>
-        <Button type="primary">Sign in</Button>
-      </Space>
+      {accessToken && currentUser ? (
+        <Space size={10}>
+          <Avatar src="https://i.pravatar.cc/300" size={40} />
+          <span style={{ fontWeight: 700 }}>{currentUser.hoTen}</span>
+        </Space>
+      ) : (
+        <Space style={{ paddingRight: 20 }}>
+          <Button>Sign up</Button>
+          <Button type="primary" onClick={() => navigate("/login")}>
+            Sign in
+          </Button>
+        </Space>
+      )}
     </div>
   );
 }

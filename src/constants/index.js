@@ -4,3 +4,7 @@ export const TOKEN_CYBERSOFT =
 export const PATH = {
   LIST_MOVIE: "/list-movie",
 };
+
+export const PATTERN = {
+  PASSWORD: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/,
+};

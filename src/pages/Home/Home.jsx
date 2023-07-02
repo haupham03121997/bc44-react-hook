@@ -8,6 +8,7 @@ import { TOKEN_CYBERSOFT } from "../../constants";
 import { Card, Row, Col, Button, Skeleton, Avatar } from "antd";
 import SkeltonListMovie from "../../components/SkeletonListMovie";
 import useFetchListMovie from "../../hooks/useFetchListMovie";
+import useStickyState from "../../hooks/useStickyState";
 const { Meta } = Card;
 
 export default function Home() {
@@ -21,7 +22,8 @@ export default function Home() {
 
   const navigate = useNavigate();
   const { data: listMovie, isLoading, error } = useFetchListMovie();
-
+  const { value, setValue } = useStickyState("green", "persisted-color");
+  // console.log("value", value);
   // redux toolkit
   // call api sau render, và 1 lần duy nhất
   // useEffect(() => {
@@ -52,6 +54,9 @@ export default function Home() {
   return (
     <div className="container">
       <h1>Danh sách Phim</h1>
+      <Button type="primary" onClick={() => setValue("red")}>
+        Change color
+      </Button>
       {isLoading && <SkeltonListMovie />}
       <Row gutter={[32, 32]}>
         {!isLoading &&
